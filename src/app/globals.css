@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +24,23 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+.custom-hide-scroll-bar {
+  overflow: auto;
+  scrollbar-width: none; /* Oculta la barra de desplazamiento en navegadores que soportan esta propiedad */
+  -ms-overflow-style: none; /* Oculta la barra de desplazamiento en Internet Explorer y Microsoft Edge */
+}
+
+.custom-hide-scroll-bar::-webkit-scrollbar {
+  display: none; /* Oculta la barra de desplazamiento en navegadores WebKit (Chrome, Safari, etc.) */
+}
+
+.custom-capitalize-fist-letter::first-letter {
+  text-transform: capitalize;
+}
+
+.custom-transition{
+  transition-duration: .3s;
+  transition-timing-function: ease-in-out;
 }
