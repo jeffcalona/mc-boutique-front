@@ -2,7 +2,7 @@ import Link from "next/link"
 import AddToCartButton from "./AddToCartButton"
 import getSize from "@/actions/get-size"
 
-async function CartProduct({ heightLg, heightSm, height, product }) {
+async function CartProduct({ heightLg, heightSm, height, product, billboard }) {
 
   const getProdcutSizes = async () => {
     try {
@@ -27,12 +27,12 @@ async function CartProduct({ heightLg, heightSm, height, product }) {
   return (
     <>
         <div className={`relative w-full ${heightLg} ${heightSm} ${height} flex justify-center group/button`}>
-            <Link href={`/ropa/${product.categoryId}/${product.id}`} className="w-full">
+            <Link href={`/${product.billboard.label}/${product.categoryId}/${product.id}`} className="w-full">
                 <img src={product.images[0].url} alt={product.name} className="w-full h-full object-cover" /> 
             </Link>
-            <AddToCartButton price={product.price} colorName={product.color.name} colorValue={product.color.value} sizes={productSize} />
+            <AddToCartButton product={product} price={product.price} colorName={product.color.name} colorValue={product.color.value} sizes={productSize} billboard={billboard} />
         </div>
-        <Link href={`/ropa/${product.categoryId}/${product.id}`} className="sm:text-xl uppercase font-medium">{product.name}</Link>
+        <Link href={`/${product.billboard.label}/${product.categoryId}/${product.id}`} className="sm:text-xl uppercase font-medium">{product.name}</Link>
         <p className="custom-capitalize-fist-letter">{product.descriptionSmall}</p>
         <p className="text-xl">{product.price} €</p>
     </>

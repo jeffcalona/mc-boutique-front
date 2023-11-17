@@ -29,15 +29,23 @@
 
 // export default RopaLoyout
 
+import getBillboard from '@/actions/get-billboard'
+import getCategories from '@/actions/get-categories'
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb'
+import NavBar from '@/components/navbar/NavBar'
 import SliderElements from '@/components/SliderCategories/SliderElements'
 import React from 'react'
+import { idBillboardClothes } from '@/app/config'
 
 async function RopaLoyout({ children }) {
 
+  const categoriesClothes = await getCategories({ billboardId: idBillboardClothes })
+  const billboard = await getBillboard(idBillboardClothes)
+
   return (
     <main>
-      <SliderElements />
+      <NavBar />
+      <SliderElements categories={categoriesClothes} billboard={billboard.label} />
       <Breadcrumb />
       {children}
     </main>

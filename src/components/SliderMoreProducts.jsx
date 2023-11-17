@@ -9,7 +9,7 @@ function SliderMoreProducts({ products }) {
               return (
                   <li key={product.id}>
                       <div className="w-[250px]">
-                          <CartProduct heightLg='lg:h-[350px]' heightSm='sm:h-[340px]' height='h-[340px]' product={product}  />
+                          <CartProduct heightLg='lg:h-[350px]' heightSm='sm:h-[340px]' height='h-[340px]' product={product} billboard={product.billboard.label} />
                       </div>
                   </li>
               )

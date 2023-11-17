@@ -1,9 +1,13 @@
+import getBillboard from "@/actions/get-billboard"
 import getProducts from "@/actions/get-products"
 import CartProduct from "@/components/CartProduct"
+import { idBillboardClothes } from "@/app/config"
 
 async function CategoryRopa({ params }) {
 
-  const products = await getProducts(params.category)
+  const products = await getProducts({ categoryId: params.category, billboardId: idBillboardClothes })
+
+  const billboard = await getBillboard(idBillboardClothes)
   
   return (
     <section className="lg:mx-20 flex justify-center sm:mx-1 mx-0">
@@ -11,7 +15,7 @@ async function CategoryRopa({ params }) {
         {products.map((product) => {
           return (
             <li key={product.id} className="w-full [&>p]:-my-1">
-              <CartProduct heightLg='lg:h-[480px]' heightSm='sm:h-[480px]' height='h-[315px]' product={product}/> 
+              <CartProduct heightLg='lg:h-[480px]' heightSm='sm:h-[480px]' height='h-[315px]' product={product} billboard={billboard.label} /> 
             </li>
           )
         })}

@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react"
 
-import InfoOfProducts from "../InfoOfProducts"
+import InfoOfProducts from "../InfoProducts/InfoOfProducts"
 
-const MainProductDetail = ({ productDetail }) => {
+const MainProductDetail = ({ productDetail, productSize }) => {
 
     const imageContainerRef = useRef(null)
 
@@ -12,7 +12,8 @@ const MainProductDetail = ({ productDetail }) => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const images = imageContainerRef.current.querySelectorAll('.snap-center')
+            const containerRefCurrent = imageContainerRef.current
+            const images = containerRefCurrent.querySelectorAll('.snap-center')
 
             let currentId = currentImgId
 
@@ -27,21 +28,22 @@ const MainProductDetail = ({ productDetail }) => {
                 setCurrentImgId(currentId);
             }
         }
-        if (imageContainerRef.current) {
-            imageContainerRef.current.addEventListener('scroll', handleScroll);
+        const containerRefCurrent = imageContainerRef.current
+        if (containerRefCurrent) {
+            containerRefCurrent.addEventListener('scroll', handleScroll);
         }
         return () => {
-            if (imageContainerRef.current) {
-                imageContainerRef.current.removeEventListener('scroll', handleScroll);
+            if (containerRefCurrent) {
+                containerRefCurrent.removeEventListener('scroll', handleScroll);
             }
         };
     }, [currentImgId])
     
     return (
         <section ref={imageContainerRef} className='md:grid md:grid-cols-6 lg:gap-x-8 md:gap-x-2 md:h-full h-[calc(75vh-144px)] overflow-y-auto snap-y snap-mandatory'>
-            <ul className='md:col-span-4 md:grid md:grid-cols-2 md:gap-[7px] h-full'>
+            <ul className='md:col-span-4 md:grid md:grid-cols-2 md:gap-[7px] h-full z-10'>
                 {/*mobile mod*/}
-                <ul className='md:hidden flex h-full w-2 flex-col gap-y-1 absolute z-10 justify-end items-center left-3 bottom-[4%]'>
+                <ul className='md:hidden flex h-full w-2 flex-col gap-y-1 absolute justify-end items-center left-3 bottom-[50%]'>
                     {productDetail.images.map((image, index) => {
                         return (
                         <li key={image.id} className={`${currentImgId === index + 1 ? 'w-2 h-2' : 'w-1 h-1'} bg-black rounded-full`} />
@@ -57,7 +59,7 @@ const MainProductDetail = ({ productDetail }) => {
                 })}
             </ul>
             <section className='md:col-span-2 md:h-[907px] md:overflow-y-auto md:block hidden'>
-                <InfoOfProducts productDetail={productDetail} />
+                <InfoOfProducts productDetail={productDetail} productSize={productSize} />
             </section>
         </section>
     )

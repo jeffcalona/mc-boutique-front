@@ -1,13 +1,10 @@
-import getCategories from "@/actions/get-categories"
 import MainCategories from "./mainCategories"
 
-async function SliderElements () {
-
-    const categories = await getCategories()
+async function SliderElements ({ categories, billboard }) {
 
   return (
     <header className="mt-28 lg:px-16 px-3">
-        <MainCategories categories={categories} />
+        <MainCategories categories={categories} billboard={billboard} />
     </header>
   )
 }

@@ -1,6 +1,7 @@
-import NavBar from '@/components/navbar/NavBar'
-import './globals.css'
 import { Cormorant_Infant } from 'next/font/google'
+import { Providers } from '@/redux/providers'
+import './globals.css'
+import { Toaster } from 'react-hot-toast'
 
 const cormorant_Infant = Cormorant_Infant({
   subsets: ['latin'],
@@ -19,8 +20,10 @@ export default function RootLayout({ children }) {
         <meta charSet='UTF-8' />
       </head>
       <body className={cormorant_Infant.className}>
-        <NavBar />
-        {children}
+        <Providers>
+          <Toaster />
+          {children}
+        </Providers>
       </body>
     </html>
   )

@@ -7,7 +7,7 @@ async function Breadcrumb() {
     <nav className='my-5 lg:mx-20 md:mx-8 mx-2 z-40'>
         <ul className='flex items-center gap-3 [&>li]:font-light [&>li]:text-lg [&>li]:capitalize [&>span]:text-xl'>
             <li>
-                <Link href='/' >inicio</Link>
+                <Link href='/' className='font-semibold' >inicio</Link>
             </li>
             <MainBreadcrumb />
         </ul>
